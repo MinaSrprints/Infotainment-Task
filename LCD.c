@@ -60,38 +60,38 @@ void LCD_sendCommand(const uint8 Command)
 #ifdef EIGHT_BIT_MODE
 	Clear_Bit(CONTROL_PORT,RS);
 	Clear_Bit(CONTROL_PORT,RW);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 	DATA_PORT = Command;
-	_delay_us(500);
+	_delay_us(100);
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 
 
 #elif defined FOUR_BIT_MODE
 	Clear_Bit(CONTROL_PORT,RS);
 	Clear_Bit(CONTROL_PORT,RW);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 #ifdef LOWER_BITS
 	DATA_PORT = (DATA_PORT & 0xF0) | ((0xF0 & Command)>>4);
 #elif defined HIGHER_BITS
 	DATA_PORT = (DATA_PORT & 0x0F) | (0xF0 & Command);
 #endif
-	_delay_us(500);
+	_delay_us(100);
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 #ifdef LOWER_BITS
 	DATA_PORT = (DATA_PORT & 0xF0) | (0x0F & Command);
 #elif defined HIGHER_BITS
 	DATA_PORT = (DATA_PORT & 0x0F) | ((0x0F & Command)<<4);
 #endif
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 
 #endif
 }
@@ -102,38 +102,38 @@ void LCD_sendChar(const char Char)
 #ifdef EIGHT_BIT_MODE
 	Set_Bit(CONTROL_PORT,RS);
 	Clear_Bit(CONTROL_PORT,RW);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 	DATA_PORT = Char;
-	_delay_us(500);
+	_delay_us(100);
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 
 
 #elif defined FOUR_BIT_MODE
 	Set_Bit(CONTROL_PORT,RS);
 	Clear_Bit(CONTROL_PORT,RW);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 #ifdef LOWER_BITS
 	DATA_PORT = (DATA_PORT & 0xF0) | ((0xF0 & Char) >> 4);
 #elif defined HIGHER_BITS
 	DATA_PORT = (DATA_PORT & 0x0F) | (0xF0 & Char);
 #endif
-	_delay_us(500);
+	_delay_us(100);
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 	Set_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 #ifdef LOWER_BITS
 	DATA_PORT = (DATA_PORT & 0xF0) | (0x0F & Char);
 #elif defined HIGHER_BITS
 	DATA_PORT = (DATA_PORT & 0x0F) | ((0x0F & Char) << 4);
 #endif
 	Clear_Bit(CONTROL_PORT,E);
-	_delay_us(500);
+	_delay_us(100);
 
 #endif
 
